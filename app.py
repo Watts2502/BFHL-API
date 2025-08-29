@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, Response, jsonify
 import re
+import json
 
 app = Flask(__name__)
 
@@ -52,7 +53,7 @@ def bfhl():
             "concat_string": concat_string
         }
 
-        return jsonify(response), 200
+        return Response(json.dumps(response, sort_keys=False), mimetype="application/json")
     
     except Exception as e:
         return jsonify({
